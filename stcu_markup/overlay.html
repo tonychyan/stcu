@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Design Overlay</title>
+		<link rel="stylesheet" href="http://pens.friedbyte.com/css/screen.css">
+		<link rel="shortcut icon" href="http://pens.friedbyte.com/img/favicon.png" />
+		<style>
+
+body{background:#e1e1e1;}
+
+.frame{
+	background:#ffffff;
+	box-shadow:0 0 5px rgba(0,0,0,0.6);
+	overflow:hidden;
+	position:relative;
+}
+.frame .designs{position:relative;z-index:1;}
+.frame .designs img{display:none;}
+.frame .designs.transparent{opacity:0;}
+
+.frame .site{
+	display:none;
+	left:0;
+	position:absolute;
+	top:0;
+	width:100%;
+	z-index:2;
+}
+.frame .site iframe{opacity:0.6;overflow:hidden;width:100%;height:11632px;}
+.frame .site.opaque iframe{opacity:1;}
+
+.frame .grid{
+	display:none;
+	left:0;
+	opacity:0.3;
+	position:absolute;
+	top:0;
+	width:100%;
+	z-index:3;
+}
+.frame .grid .fill{background:#DD0000;height:11632px;}
+
+.tools{
+	background:#000;
+	bottom:0;
+	left:0;
+	opacity:0;
+	padding:10px;
+	text-align:center;
+	position:fixed;
+	width:100%;
+	z-index:4;
+}
+.tools:hover,
+.tools:focus{opacity:0.8;}
+.tools a{color:#fff;}
+.tools .pipe{margin:0 10px;}
+.tools .resize{display:inline;}
+.tools .toggle-design .on{display:none;}
+.tools .toggle-design.switch .off{display:none;}
+.tools .toggle-design.switch .on{display:inline;}
+.tools .toggle-grid .off{display:none;}
+.tools .toggle-grid.switch .on{display:none;}
+.tools .toggle-grid.switch .off{display:inline;}
+.tools .toggle-site .off{display:none;}
+.tools .toggle-site.switch .on{display:none;}
+.tools .toggle-site.switch .off{display:inline;}
+
+#xs-size .grid .container{width:100%;}
+#sm-size .grid .container{width:100%;}
+#md-size .grid .container{width:892px;}
+#lg-size .grid .container{width:1110px;}
+
+#xs-size .col-xs-1{display:none;}
+#xs-size .col-xs-1:nth-child(1){display:block;width:25%;}
+#xs-size .col-xs-1:nth-child(2){display:block;width:25%;}
+#xs-size .col-xs-1:nth-child(3){display:block;width:25%;}
+#xs-size .col-xs-1:nth-child(4){display:block;width:25%;}
+
+#xs-size{margin:0 auto;width:500px;}
+#sm-size{margin:0 auto;width:768px;}
+#md-size{margin:0 auto;width:992px;}
+#lg-size{margin:0 auto;width:1310px;}
+#xs-size .xs-overlay{display:inline;}
+#sm-size .sm-overlay{display:inline;}
+#md-size .md-overlay{display:inline;}
+#lg-size .lg-overlay{display:inline;}
+
+		</style>
+	</head>
+	<body>
+
+<div id="xs-size" class="frame">
+	<div class="designs">
+		<img class="xs-overlay" src="prebuilt/overlay/STCU-Homepage-Mobile500.png" alt="Design Overlay" />
+		<img class="sm-overlay" src="prebuilt/overlay/STCU-Homepage-Tablet768.png" alt="Design Overlay" />
+		<!-- <img class="md-overlay" src="prebuilt/overlay/STCU-Homepage-Desktop1310.png" alt="Design Overlay" /> -->
+		<img class="lg-overlay" src="prebuilt/overlay/STCU-Homepage-Desktop1310.png" alt="Design Overlay" />
+	</div>
+	<div class="site" style="display: block;">
+		<iframe src="http://services.ingeniux.com/markup/stcu_markup/homepage.html" frameborder="0" scrolling="no"></iframe>
+	</div>
+	<div class="grid">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-1"><div class="fill"></div></div>
+				<div class="col-xs-1"><div class="fill"></div></div>
+				<div class="col-xs-1"><div class="fill"></div></div>
+				<div class="col-xs-1"><div class="fill"></div></div>
+				<div class="col-xs-1"><div class="fill"></div></div>
+				<div class="col-xs-1"><div class="fill"></div></div>
+				<div class="col-xs-1"><div class="fill"></div></div>
+				<div class="col-xs-1"><div class="fill"></div></div>
+				<div class="col-xs-1"><div class="fill"></div></div>
+				<div class="col-xs-1"><div class="fill"></div></div>
+				<div class="col-xs-1"><div class="fill"></div></div>
+				<div class="col-xs-1"><div class="fill"></div></div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="tools">
+	<div class="resize">
+		<a class="xs-size" href="#">xs-size</a>
+		<span class="pipe">|</span>
+		<a class="sm-size" href="#">sm-size</a>
+		<span class="pipe">|</span>
+		<a class="md-size" href="#">md-size</a>
+		<span class="pipe">|</span>
+		<a class="lg-size" href="#">lg-size</a>
+	</div>
+	<span class="pipe">|</span>
+	<a class="toggle-design" href="#">
+		<span class="on">
+			+ design
+		</span>
+		<span class="off">
+			- design
+		</span>
+	</a>
+	<span class="pipe">|</span>
+	<a class="toggle-site" href="#">
+		<span class="on">
+			+ site
+		</span>
+		<span class="off">
+			- site
+		</span>
+	</a>
+	<span class="pipe">|</span>
+	<a class="toggle-grid" href="#">
+		<span class="on">
+			+ grid
+		</span>
+		<span class="off">
+			- grid
+		</span>
+	</a>
+</div>
+
+		<script src='http://pens.friedbyte.com/js/jquery.js'></script>
+		<script>
+
+$(document).ready(function(){
+
+	// Resize frame and load images
+	$('.resize a' ).each(function(index) {
+		var sizeID = $(this).attr('class'); 
+		$(this).on('click', function (e){
+			e.preventDefault();
+			$('.frame').attr('id', sizeID);
+		});
+	});
+
+	// Toggle design
+	$('.toggle-design').click(function (e) {
+		e.preventDefault();
+		$(this).toggleClass('switch');
+		$('.designs').toggleClass('transparent');
+		$('.frame .site').toggleClass('opaque');
+	});
+
+	// Toggle site
+	$('.toggle-site').click(function (e) {
+		e.preventDefault();
+		$(this).toggleClass('switch');
+		$('.frame .site').toggle();
+	});
+
+	// Toggle grid
+	$('.toggle-grid').click(function (e) {
+		e.preventDefault();
+		$(this).toggleClass('switch');
+		$('.grid').toggle();
+	});
+
+});
+
+		</script>
+	</body>
+</html>
